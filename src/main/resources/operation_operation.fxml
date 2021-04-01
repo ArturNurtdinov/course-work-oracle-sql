@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OperationOperationController">
+   <children>
+      <Label fx:id="idLabel" layoutX="114.0" layoutY="49.0" text="id:" />
+      <TextField fx:id="idText" layoutX="223.0" layoutY="45.0" prefHeight="26.0" prefWidth="262.0" />
+      <TextField fx:id="debitText" layoutX="223.0" layoutY="109.0" prefHeight="26.0" prefWidth="262.0" />
+      <TextField fx:id="creditText" layoutX="223.0" layoutY="141.0" prefHeight="26.0" prefWidth="262.0" />
+      <DatePicker fx:id="datePicker" layoutX="223.0" layoutY="174.0" prefHeight="26.0" prefWidth="262.0" />
+      <Label fx:id="articleLabel" layoutX="114.0" layoutY="81.0" text="article:" />
+      <Label fx:id="debitLabel" layoutX="114.0" layoutY="113.0" text="debit:" />
+      <Label fx:id="creditLabel" layoutX="114.0" layoutY="145.0" text="credit:" />
+      <Label fx:id="dateLabel" layoutX="114.0" layoutY="178.0" text="credit date:" />
+      <Label fx:id="balanceLabel" layoutX="114.0" layoutY="210.0" text="balance:" />
+      <ComboBox fx:id="articleCombo" layoutX="224.0" layoutY="77.0" prefHeight="26.0" prefWidth="262.0" />
+      <ComboBox fx:id="balanceCombo" layoutX="224.0" layoutY="205.0" prefHeight="26.0" prefWidth="262.0" />
+      <Button layoutX="526.0" layoutY="360.0" mnemonicParsing="false" onAction="#performClick" text="Perform" />
+      <Button layoutX="467.0" layoutY="360.0" mnemonicParsing="false" onAction="#cancelClick" text="Cancel" />
+   </children>
+</AnchorPane>

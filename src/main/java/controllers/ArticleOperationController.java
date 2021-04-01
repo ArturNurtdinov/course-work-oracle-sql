@@ -24,7 +24,7 @@ public class ArticleOperationController {
     @FXML
     private TextField nameText;
 
-    public void proveParent(ArticlesController parent, Connection connection, int articleId) {
+    public void provideParent(ArticlesController parent, Connection connection, int articleId) {
         this.connection = connection;
         this.parent = parent;
         this.articleId = articleId;
@@ -60,6 +60,10 @@ public class ArticleOperationController {
         String newName = nameText.getText();
         if (newName.isBlank()) {
             parent.showErrorAlert("New name can't be blank!");
+            return;
+        }
+        if (newName.equals(obtainedArticle.getName())) {
+            parent.showErrorAlert("New name can't be equal to old!");
             return;
         }
         if (articleId != 0) {

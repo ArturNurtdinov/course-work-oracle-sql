@@ -44,6 +44,7 @@ public class ArticlesController {
         articleNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modifyButton.setDisable(true);
         deleteButton.setDisable(true);
+        articles = new ArrayList<>();
         refreshTable();
 
         articleTable.getSelectionModel().getSelectedItems().addListener((ListChangeListener<Article>) c -> {
@@ -64,7 +65,7 @@ public class ArticlesController {
         try {
             Statement stmt = connection.createStatement();
 
-            articles = new ArrayList<>();
+            articles.clear();
             ResultSet rs = stmt.executeQuery("select * from articles");
             while (rs.next()) {
                 articles.add(new Article(rs.getInt(1), rs.getString(2)));
@@ -95,7 +96,7 @@ public class ArticlesController {
             articleStage.show();
 
             ArticleOperationController articleOperationController = loader.getController();
-            articleOperationController.proveParent(this, connection, 0);
+            articleOperationController.provideParent(this, connection, 0);
         } catch (Exception e) {
             e.printStackTrace();
             parent.showErrorAlert(e.getMessage());
@@ -127,7 +128,7 @@ public class ArticlesController {
             articleStage.show();
 
             ArticleOperationController articleOperationController = loader.getController();
-            articleOperationController.proveParent(this, connection, selectedArticle.getId());
+            articleOperationController.provideParent(this, connection, selectedArticle.getId());
         } catch (Exception e) {
             e.printStackTrace();
             parent.showErrorAlert(e.getMessage());
