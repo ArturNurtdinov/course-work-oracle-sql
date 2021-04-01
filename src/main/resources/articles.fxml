@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ArticlesController">
+   <children>
+      <Button layoutX="834.0" layoutY="561.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
+      <TableView fx:id="articleTable" layoutX="14.0" layoutY="14.0" prefHeight="374.0" prefWidth="872.0">
+        <columns>
+          <TableColumn fx:id="articleIdCol" prefWidth="163.1999969482422" text="id" />
+          <TableColumn fx:id="articleNameCol" prefWidth="708.0" text="name" />
+        </columns>
+      </TableView>
+      <Button fx:id="addButton" layoutX="14.0" layoutY="395.0" mnemonicParsing="false" onAction="#addClick" prefHeight="26.0" prefWidth="123.0" text="Add" />
+      <Button fx:id="deleteButton" layoutX="14.0" layoutY="429.0" mnemonicParsing="false" onAction="#deleteClick" prefHeight="26.0" prefWidth="123.0" text="Delete" />
+      <Button fx:id="modifyButton" layoutX="14.0" layoutY="462.0" mnemonicParsing="false" onAction="#modifyClick" prefHeight="26.0" prefWidth="123.0" text="Modify" />
+   </children>
+</AnchorPane>

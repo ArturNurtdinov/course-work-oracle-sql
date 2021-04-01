@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ArticleOperationController">
+   <children>
+      <Label fx:id="idLabel" layoutX="137.0" layoutY="48.0" prefHeight="18.0" prefWidth="16.0" text="id:" />
+      <Label fx:id="nameLabel" layoutX="121.0" layoutY="85.0" text="name:" />
+      <TextField fx:id="idText" disable="true" layoutX="176.0" layoutY="44.0" prefHeight="26.0" prefWidth="263.0" />
+      <TextField fx:id="nameText" layoutX="176.0" layoutY="80.0" prefHeight="26.0" prefWidth="263.0" />
+      <Button layoutX="384.0" layoutY="261.0" mnemonicParsing="false" onAction="#performClick" prefHeight="26.0" prefWidth="102.0" text="Perform" />
+      <Button layoutX="274.0" layoutY="261.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="26.0" prefWidth="102.0" text="Cancel" />
+   </children>
+</AnchorPane>
