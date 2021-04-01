@@ -74,6 +74,7 @@ public class ArticlesController {
             articleTable.getItems().addAll(articles);
         } catch (Exception e) {
             e.printStackTrace();
+            parent.showErrorAlert(e.getMessage());
         }
     }
 
@@ -97,6 +98,7 @@ public class ArticlesController {
             articleOperationController.proveParent(this, connection, 0);
         } catch (Exception e) {
             e.printStackTrace();
+            parent.showErrorAlert(e.getMessage());
         }
     }
 
@@ -110,6 +112,7 @@ public class ArticlesController {
             refreshTable();
         } catch (Exception e) {
             e.printStackTrace();
+            parent.showErrorAlert(e.getMessage());
         }
     }
 
@@ -127,6 +130,7 @@ public class ArticlesController {
             articleOperationController.proveParent(this, connection, selectedArticle.getId());
         } catch (Exception e) {
             e.printStackTrace();
+            parent.showErrorAlert(e.getMessage());
         }
     }
 

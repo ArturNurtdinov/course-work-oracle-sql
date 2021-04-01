@@ -70,15 +70,23 @@ public class ArticleOperationController {
                 parent.closeArticleStage();
             } catch (Exception e) {
                 e.printStackTrace();
+                parent.showErrorAlert(e.getMessage());
             }
         } else {
             try {
                 Statement stmt = connection.createStatement();
-                stmt.executeQuery("insert into ARTICLES (name) values ('" + newName + "')");
+                ResultSet rs = stmt.executeQuery("insert into ARTICLES (name) values ('" + newName + "')");
+                System.out.println(rs);
+                if (rs.next()) {
+                    System.out.println(rs);
+                    System.out.println(rs.rowInserted());
+                    System.out.println(rs.getRow());
+                }
                 parent.refreshTable();
                 parent.closeArticleStage();
             } catch (Exception e) {
                 e.printStackTrace();
+                parent.showErrorAlert(e.getMessage());
             }
         }
     }
