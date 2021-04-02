@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.BalancesController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BalancesController">
+   <children>
+      <Button layoutX="845.0" layoutY="560.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
+      <TableView fx:id="balanceTable" layoutX="14.0" layoutY="14.0" prefHeight="468.0" prefWidth="874.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="dateCol" prefWidth="279.0" text="create date" />
+            <TableColumn fx:id="debitCol" prefWidth="176.20001220703125" text="debit" />
+            <TableColumn fx:id="creditCol" prefWidth="183.4000244140625" text="credit" />
+            <TableColumn fx:id="amountCol" prefWidth="163.199951171875" text="amount" />
+        </columns>
+      </TableView>
+      <Button fx:id="formButton" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#formClick" prefHeight="26.0" prefWidth="140.0" text="Form" />
+   </children>
 </AnchorPane>
