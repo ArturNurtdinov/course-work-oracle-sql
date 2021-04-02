@@ -8,11 +8,11 @@
       <TableView fx:id="operationTable" layoutX="14.0" layoutY="14.0" prefHeight="367.0" prefWidth="874.0">
         <columns>
           <TableColumn fx:id="operationIdCol" prefWidth="75.0" text="id" />
-          <TableColumn fx:id="operationArticleIdCol" prefWidth="167.20001983642578" text="article id" />
-            <TableColumn fx:id="operationDebitCol" prefWidth="155.80001831054688" text="debit" />
-            <TableColumn fx:id="operationCreditCol" prefWidth="188.99996948242188" text="credit" />
-            <TableColumn fx:id="operationCreditDateCol" prefWidth="166.79998779296875" text="credit date" />
-            <TableColumn fx:id="operationBalanceIdCol" prefWidth="122.5999755859375" text="balance id" />
+          <TableColumn fx:id="operationArticleIdCol" prefWidth="178.99998474121094" text="article" />
+            <TableColumn fx:id="operationDebitCol" prefWidth="93.80001831054688" text="debit" />
+            <TableColumn fx:id="operationCreditCol" prefWidth="107.79998779296875" text="credit" />
+            <TableColumn fx:id="operationCreditDateCol" prefWidth="128.0" text="credit date" />
+            <TableColumn fx:id="operationBalanceIdCol" prefWidth="300.0" text="balance" />
         </columns>
       </TableView>
       <Button layoutX="845.0" layoutY="560.0" mnemonicParsing="false" onAction="#backClick" text="Back" />

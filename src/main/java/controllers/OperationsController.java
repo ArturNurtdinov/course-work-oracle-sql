@@ -10,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Article;
+import model.Balance;
 import model.Operation;
 
 import java.sql.Connection;
@@ -52,11 +54,11 @@ public class OperationsController {
         this.connection = connection;
         operations = new ArrayList<>();
         operationIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        operationArticleIdCol.setCellValueFactory(new PropertyValueFactory<>("articleId"));
+        operationArticleIdCol.setCellValueFactory(new PropertyValueFactory<>("article"));
         operationDebitCol.setCellValueFactory(new PropertyValueFactory<>("debit"));
         operationCreditCol.setCellValueFactory(new PropertyValueFactory<>("credit"));
         operationCreditDateCol.setCellValueFactory(new PropertyValueFactory<>("creditDate"));
-        operationBalanceIdCol.setCellValueFactory(new PropertyValueFactory<>("balanceId"));
+        operationBalanceIdCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
         modifyButton.setDisable(true);
         deleteButton.setDisable(true);
         refreshTable();
@@ -80,10 +82,11 @@ public class OperationsController {
             Statement stmt = connection.createStatement();
 
             operations.clear();
-            ResultSet rs = stmt.executeQuery("select * from OPERATIONS");
+            ResultSet rs = stmt.executeQuery("select * from OPERATIONS o join ARTICLES a on a.id=o.article_id join BALANCE b on b.id=o.balance_id");
             while (rs.next()) {
-                operations.add(new Operation(rs.getInt(1), rs.getInt(2),
-                        rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getInt(6)));
+                operations.add(new Operation(rs.getInt(1), new Article(rs.getInt(7), rs.getString(8)),
+                        rs.getInt(3), rs.getInt(4), rs.getDate(5), new Balance(rs.getInt(9), rs.getDate(10),
+                        rs.getInt(11), rs.getInt(12), rs.getInt(13))));
             }
 
             operationTable.getItems().clear();

@@ -10,9 +10,7 @@ import model.Balance;
 import model.Operation;
 import utils.ListUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,14 +72,14 @@ public class OperationOperationController {
                 Balance balance = null;
                 Statement stmt1 = connection.createStatement();
 
-                ResultSet rs1 = stmt1.executeQuery("select * from articles a where a.id = " + operation.getArticleId());
+                ResultSet rs1 = stmt1.executeQuery("select * from articles a where a.id = " + operation.getArticle().getId());
                 if (rs1.next()) {
                     article = new Article(rs1.getInt(1), rs1.getString(2));
                 }
 
                 Statement stmt2 = connection.createStatement();
 
-                ResultSet rs2 = stmt2.executeQuery("select * from balance b where b.id = " + operation.getBalanceId());
+                ResultSet rs2 = stmt2.executeQuery("select * from balance b where b.id = " + operation.getBalance().getId());
                 if (rs2.next()) {
                     balance = new Balance(rs2.getInt(1), rs2.getDate(2),
                             rs2.getInt(3), rs2.getInt(4), rs2.getInt(5));
@@ -155,10 +153,99 @@ public class OperationOperationController {
     }
 
     private void handleAddEvent() {
+        Article article = articleCombo.getSelectionModel().getSelectedItem();
+        if (article == null) {
+            parent.showErrorAlert("Article must be chosen!");
+            return;
+        }
 
+        Balance balance = balanceCombo.getSelectionModel().getSelectedItem();
+        if (balance == null) {
+            parent.showErrorAlert("Balance must be chosen!");
+            return;
+        }
+
+        try {
+            int debit = Integer.parseInt(debitText.getText());
+            int credit = Integer.parseInt(creditText.getText());
+            if (debit < 0 || credit < 0) {
+                parent.showErrorAlert("Debit and credit must be positive");
+                return;
+            }
+            LocalDate date = datePicker.getValue();
+
+            if (date.isBefore(balance.getCreateDate().toLocalDate())) {
+                parent.showErrorAlert("Invalid date. Balance for this date was already formed");
+                return;
+            }
+
+            balances.clear();
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("insert into operations (article_id, debit, credit, credit_date, balance_id) values (?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, article.getId());
+            preparedStatement.setInt(2, debit);
+            preparedStatement.setInt(3, credit);
+            preparedStatement.setDate(4, Date.valueOf(date));
+            preparedStatement.setInt(5, balance.getId());
+            preparedStatement.executeUpdate();
+            parent.refreshTable();
+            parent.closeOperationStage();
+        } catch (NumberFormatException e) {
+            parent.showErrorAlert("Invalid input for debit or credit");
+            e.printStackTrace();
+        } catch (Exception e) {
+            parent.showErrorAlert(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void handleModifyEvent() {
+        Article article = articleCombo.getSelectionModel().getSelectedItem();
+        if (article == null) {
+            parent.showErrorAlert("Article must be chosen!");
+            return;
+        }
 
+        Balance balance = balanceCombo.getSelectionModel().getSelectedItem();
+        if (balance == null) {
+            parent.showErrorAlert("Balance must be chosen!");
+            return;
+        }
+
+        try {
+            int debit = Integer.parseInt(debitText.getText());
+            int credit = Integer.parseInt(creditText.getText());
+            if (debit < 0 || credit < 0) {
+                parent.showErrorAlert("Debit and credit must be positive");
+                return;
+            }
+            LocalDate date = datePicker.getValue();
+
+            System.out.println(Date.valueOf(date));
+            System.out.println(balance.getCreateDate().toLocalDate());
+            if (date.isBefore(balance.getCreateDate().toLocalDate())) {
+                parent.showErrorAlert("Invalid date. Balance for this date was already formed");
+                return;
+            }
+
+            balances.clear();
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("update operations o set o.article_id = ?, o.debit = ?, o.credit = ?, o.credit_date = ?, o.balance_id = ? where o.id = ?");
+            preparedStatement.setInt(1, article.getId());
+            preparedStatement.setInt(2, debit);
+            preparedStatement.setInt(3, credit);
+            preparedStatement.setDate(4, Date.valueOf(date));
+            preparedStatement.setInt(5, balance.getId());
+            preparedStatement.setInt(6, operation.getId());
+            preparedStatement.executeUpdate();
+            parent.refreshTable();
+            parent.closeOperationStage();
+        } catch (NumberFormatException e) {
+            parent.showErrorAlert("Invalid input for debit or credit");
+            e.printStackTrace();
+        } catch (Exception e) {
+            parent.showErrorAlert(e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -79,13 +79,7 @@ public class ArticleOperationController {
         } else {
             try {
                 Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery("insert into ARTICLES (name) values ('" + newName + "')");
-                System.out.println(rs);
-                if (rs.next()) {
-                    System.out.println(rs);
-                    System.out.println(rs.rowInserted());
-                    System.out.println(rs.getRow());
-                }
+                stmt.executeQuery("insert into ARTICLES (name) values ('" + newName + "')");
                 parent.refreshTable();
                 parent.closeArticleStage();
             } catch (Exception e) {

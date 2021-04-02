@@ -5,19 +5,19 @@ import java.util.Objects;
 
 public class Operation {
     private int id;
-    private int articleId;
+    private Article article;
     private int debit;
     private int credit;
     private Date creditDate;
-    private int balanceId;
+    private Balance balance;
 
-    public Operation(int id, int articleId, int debit, int credit, Date creditDate, int balanceId) {
+    public Operation(int id, Article article, int debit, int credit, Date creditDate, Balance balance) {
         this.id = id;
-        this.articleId = articleId;
+        this.article = article;
         this.debit = debit;
         this.credit = credit;
         this.creditDate = creditDate;
-        this.balanceId = balanceId;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -28,12 +28,12 @@ public class Operation {
         this.id = id;
     }
 
-    public int getArticleId() {
-        return articleId;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
     public int getDebit() {
@@ -60,23 +60,23 @@ public class Operation {
         this.creditDate = creditDate;
     }
 
-    public int getBalanceId() {
-        return balanceId;
+    public Balance getBalance() {
+        return balance;
     }
 
-    public void setBalanceId(int balanceId) {
-        this.balanceId = balanceId;
+    public void setBalance(Balance balance) {
+        this.balance = balance;
     }
 
     @Override
     public String toString() {
         return "Operation{" +
                 "id=" + id +
-                ", articleId=" + articleId +
+                ", article=" + article.toString() +
                 ", debit=" + debit +
                 ", credit=" + credit +
                 ", creditDate=" + creditDate +
-                ", balanceId=" + balanceId +
+                ", balance=" + balance.toString() +
                 '}';
     }
 
@@ -85,12 +85,11 @@ public class Operation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Operation operation = (Operation) o;
-        return id == operation.id && articleId == operation.articleId && debit == operation.debit && credit == operation.credit
-                && balanceId == operation.balanceId && Objects.equals(creditDate, operation.creditDate);
+        return id == operation.id && debit == operation.debit && credit == operation.credit && Objects.equals(article, operation.article) && Objects.equals(creditDate, operation.creditDate) && Objects.equals(balance, operation.balance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, articleId, debit, credit, creditDate, balanceId);
+        return Objects.hash(id, article, debit, credit, creditDate, balance);
     }
 }
