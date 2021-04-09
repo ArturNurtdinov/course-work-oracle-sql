@@ -144,4 +144,9 @@ public class FinancialFlowController {
         fillCreditData();
         bindCredit();
     }
+
+    @FXML
+    public void backClick() {
+        parent.showMainWindow();
+    }
 }

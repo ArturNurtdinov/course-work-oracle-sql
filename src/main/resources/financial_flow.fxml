@@ -16,5 +16,6 @@
       </BarChart>
       <Button layoutX="55.0" layoutY="440.0" mnemonicParsing="false" onAction="#debitClick" text="Debit" />
       <Button layoutX="106.0" layoutY="440.0" mnemonicParsing="false" onAction="#creditClick" text="Credit" />
+      <Button layoutX="645.0" layoutY="440.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
    </children>
 </AnchorPane>
