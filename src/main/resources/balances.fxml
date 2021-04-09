@@ -16,5 +16,6 @@
         </columns>
       </TableView>
       <Button fx:id="formButton" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#formClick" prefHeight="26.0" prefWidth="140.0" text="Form" />
+      <Button fx:id="amountButton" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#amountClick" prefHeight="26.0" prefWidth="140.0" text="Amount by time" />
    </children>
 </AnchorPane>

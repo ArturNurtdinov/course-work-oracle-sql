@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import model.Balance;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -102,6 +103,20 @@ public class App extends Application {
 
             FinancialFlowController mainScreenController = loader.getController();
             mainScreenController.provideApp(this, connection);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAmountWindowForBalance(Balance balance) {
+        try {
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/balance_amount.fxml"));
+            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.setTitle("Balance amount by dates");
+            primaryStage.show();
+
+            BalanceAmountController mainScreenController = loader.getController();
+            mainScreenController.provideApp(this, connection, balance);
         } catch (IOException e) {
             e.printStackTrace();
         }

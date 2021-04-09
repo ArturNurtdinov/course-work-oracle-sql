@@ -7,9 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Article;
 import model.Balance;
-import model.Operation;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -36,6 +34,8 @@ public class BalancesController {
     private TableColumn<?, ?> amountCol;
     @FXML
     private Button formButton;
+    @FXML
+    private Button amountButton;
 
     public void provideApp(App parent, Connection connection) {
         this.parent = parent;
@@ -47,6 +47,7 @@ public class BalancesController {
         dateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         formButton.setDisable(true);
+        amountButton.setDisable(true);
         refreshTable();
 
         balanceTable.getSelectionModel().getSelectedItems().addListener((ListChangeListener<Balance>) c -> {
@@ -54,8 +55,10 @@ public class BalancesController {
                 try {
                     selectedBalance = c.getAddedSubList().get(0);
                     formButton.setDisable(false);
+                    amountButton.setDisable(false);
                 } catch (IndexOutOfBoundsException e) {
                     formButton.setDisable(true);
+                    amountButton.setDisable(true);
                     e.printStackTrace();
                 }
             }
@@ -119,6 +122,11 @@ public class BalancesController {
             e.printStackTrace();
             parent.showErrorAlert(e.getMessage());
         }
+    }
+
+    @FXML
+    public void amountClick() {
+        parent.showAmountWindowForBalance(selectedBalance);
     }
 
     @FXML
