@@ -1,9 +1,6 @@
 package app;
 
-import controllers.ArticlesController;
-import controllers.BalancesController;
-import controllers.MainScreenController;
-import controllers.OperationsController;
+import controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -90,6 +87,20 @@ public class App extends Application {
             primaryStage.show();
 
             BalancesController mainScreenController = loader.getController();
+            mainScreenController.provideApp(this, connection);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showArticlesFlowWindow() {
+        try {
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/financial_flow.fxml"));
+            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.setTitle("Financial flow by articles");
+            primaryStage.show();
+
+            FinancialFlowController mainScreenController = loader.getController();
             mainScreenController.provideApp(this, connection);
         } catch (IOException e) {
             e.printStackTrace();

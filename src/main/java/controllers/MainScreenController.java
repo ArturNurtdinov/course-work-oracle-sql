@@ -35,4 +35,9 @@ public class MainScreenController {
     public void balancesClick() {
         parent.showBalancesWindow();
     }
+
+    @FXML
+    public void articlesFlowClick() {
+        parent.showArticlesFlowWindow();
+    }
 }
