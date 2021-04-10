@@ -9,5 +9,6 @@
       <Button fx:id="operationsButton" layoutX="200.0" layoutY="125.0" mnemonicParsing="false" onAction="#operationsClick" prefHeight="26.0" prefWidth="199.0" text="Operations" />
       <Button fx:id="balancesButton" layoutX="200.0" layoutY="159.0" mnemonicParsing="false" onAction="#balancesClick" prefHeight="26.0" prefWidth="199.0" text="Balances" />
       <Button fx:id="articlesFlow" layoutX="200.0" layoutY="193.0" mnemonicParsing="false" onAction="#articlesFlowClick" prefHeight="26.0" prefWidth="199.0" text="Financial flow by articles" />
+      <Button fx:id="dynamicButton" layoutX="200.0" layoutY="226.0" mnemonicParsing="false" onAction="#dynamicClick" prefHeight="26.0" prefWidth="199.0" text="Dynamic of debits and credits" />
    </children>
 </AnchorPane>

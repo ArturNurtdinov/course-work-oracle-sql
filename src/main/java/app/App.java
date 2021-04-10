@@ -122,6 +122,20 @@ public class App extends Application {
         }
     }
 
+    public void showDynamicSettingsWindow() {
+        try {
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/dynamic_settings.fxml"));
+            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.setTitle("Dynamic settings");
+            primaryStage.show();
+
+            DynamicSettingsController mainScreenController = loader.getController();
+            mainScreenController.provideApp(this, connection);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showErrorAlert(String message) {
         final Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(primaryStage);

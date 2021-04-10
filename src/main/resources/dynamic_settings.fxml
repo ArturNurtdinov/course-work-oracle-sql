@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DynamicSettingsController">
+   <children>
+      <DatePicker fx:id="fromDate" layoutX="117.0" layoutY="54.0" promptText="From" />
+      <DatePicker fx:id="toDate" layoutX="300.0" layoutY="54.0" promptText="To" />
+      <Button layoutX="117.0" layoutY="329.0" mnemonicParsing="false" onAction="#debitsClick" prefHeight="36.0" prefWidth="84.0" text="Show debits" />
+      <Button layoutX="391.0" layoutY="329.0" mnemonicParsing="false" onAction="#creditsClick" prefHeight="36.0" prefWidth="84.0" text="Show credits" />
+      <ListView fx:id="articleList" layoutX="117.0" layoutY="100.0" prefHeight="200.0" prefWidth="358.0" />
+      <Button layoutX="545.0" layoutY="365.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
+   </children>
+</AnchorPane>

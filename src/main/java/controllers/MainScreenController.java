@@ -40,4 +40,9 @@ public class MainScreenController {
     public void articlesFlowClick() {
         parent.showArticlesFlowWindow();
     }
+
+    @FXML
+    public void dynamicClick() {
+        parent.showDynamicSettingsWindow();
+    }
 }
