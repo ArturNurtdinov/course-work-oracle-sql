@@ -13,10 +13,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DynamicFlowController {
@@ -25,7 +22,7 @@ public class DynamicFlowController {
     private LocalDate fromDate;
     private LocalDate toDate;
     private List<Article> articles;
-    private Map<String, Integer> data;
+    private TreeMap<Date, Integer> data;
 
     @FXML
     private LineChart<String, Number> chart;
@@ -43,7 +40,7 @@ public class DynamicFlowController {
         chart.setAnimated(false);
         categoryAxis.setLabel("Date");
         numberAxis.setLabel(type);
-        data = new HashMap<>();
+        data = new TreeMap<>();
 
         if (type.equalsIgnoreCase("debit")) {
             fillDebitData();
@@ -71,7 +68,7 @@ public class DynamicFlowController {
             }
 
             operations.forEach(operation -> {
-                data.put(operation.getCreditDate().toString(), data.getOrDefault(operation.getCreditDate().toString(), 0) + operation.getDebit());
+                data.put(operation.getCreditDate(), data.getOrDefault(operation.getCreditDate(), 0) + operation.getDebit());
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +91,7 @@ public class DynamicFlowController {
             }
 
             operations.forEach(operation -> {
-                data.put(operation.getCreditDate().toString(), data.getOrDefault(operation.getCreditDate().toString(), 0) + operation.getCredit());
+                data.put(operation.getCreditDate(), data.getOrDefault(operation.getCreditDate(), 0) + operation.getCredit());
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,13 +100,15 @@ public class DynamicFlowController {
 
     private void showDebits() {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        data.forEach((key, value) -> series.getData().add(new XYChart.Data<>(key, value)));
+        SortedSet<Date> sortedSet = new TreeSet<>(data.keySet());
+        sortedSet.forEach(key -> series.getData().add(new XYChart.Data<>(key.toString(), data.get(key))));
         chart.getData().addAll(series);
     }
 
     private void showCredits() {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        data.forEach((key, value) -> series.getData().add(new XYChart.Data<>(key, value)));
+        SortedSet<Date> sortedSet = new TreeSet<>(data.keySet());
+        sortedSet.forEach(key -> series.getData().add(new XYChart.Data<>(key.toString(), data.get(key))));
         chart.getData().addAll(series);
     }
 }
