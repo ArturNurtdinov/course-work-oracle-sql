@@ -31,8 +31,7 @@ public class App extends Application {
             connection = DriverManager.getConnection(
                     "jdbc:oracle:thin:@localhost:1521:xe", "c##artur", "1234");
 
-            showMainWindow();
-
+            showAuthWindow();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,6 +46,20 @@ public class App extends Application {
 
             MainScreenController mainScreenController = loader.getController();
             mainScreenController.provideApp(this, connection);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAuthWindow() {
+        try {
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth_window.fxml"));
+            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.setTitle("Authenticate");
+            primaryStage.show();
+
+            AuthController authController = loader.getController();
+            authController.provideApp(this, connection);
         } catch (IOException e) {
             e.printStackTrace();
         }
