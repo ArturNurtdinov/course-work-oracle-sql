@@ -2,6 +2,7 @@ package controllers;
 
 import app.App;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
 
@@ -19,7 +20,7 @@ public class AuthController {
     @FXML
     private TextField loginText;
     @FXML
-    private TextField passwordText;
+    private PasswordField passwordField;
 
     public void provideApp(App parent, Connection connection) {
         this.parent = parent;
@@ -32,7 +33,7 @@ public class AuthController {
     public void loginClick() {
         final boolean[] found = {false};
         users.forEach(user -> {
-            if (user.getLogin().equals(loginText.getText()) && user.getPassword().equals(passwordText.getText())) {
+            if (user.getLogin().equals(loginText.getText()) && user.getPassword().equals(passwordField.getText())) {
                 parent.showMainWindow();
                 found[0] = true;
             }
