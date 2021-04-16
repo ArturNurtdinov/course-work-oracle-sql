@@ -62,7 +62,7 @@ public class ArticleOperationController {
             parent.showErrorAlert("New name can't be blank!");
             return;
         }
-        if (newName.equals(obtainedArticle.getName())) {
+        if (obtainedArticle != null && newName.equals(obtainedArticle.getName())) {
             parent.showErrorAlert("New name can't be equal to old!");
             return;
         }
